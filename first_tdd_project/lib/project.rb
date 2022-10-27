@@ -19,7 +19,20 @@ class Array
     end
 end
 
-def my_transpose
+def my_transpose(matrix)
+    raise ArgumentError.new unless matrix.all? {|ele| ele.is_a?(Array)}
+    zip = []
+    i = 0
+    while i < matrix.length
+        subzip = []
+        matrix.each do |arr|
+            subzip << arr[i]
+        end
+        zip << subzip
+        i += 1
+    end
+    
+    zip
 end
 
 def stock_picker

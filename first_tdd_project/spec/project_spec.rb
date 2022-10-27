@@ -70,3 +70,26 @@ describe "Array#two_sum" do
     end 
 
 end 
+
+describe "my_transpose" do
+    let(:arr_4) {[[0, 1, 2], [3, 4, 5], [6, 7, 8]]}
+    let(:matrix_1) {[[0, 1, 2], [3, 4], [6]]}
+
+    before(:each) do 
+        expect(arr_4).not_to receive(:transpose)
+        expect(arr_4).not_to receive(:transpose!)
+        my_transpose(arr_4) {|el| el }
+    end
+
+    it "returns a 2D array with the elements in a subarray grouped by their indices" do
+        expect(my_transpose(arr_4)).to eq([[0, 3, 6], [1, 4, 7], [2, 5, 8]])
+    end
+
+    it "if subarrays contains different lengths should fill in the empty spaces with nil" do
+        expect(my_transpose(matrix_1)).to eq([[0, 3, 6], [1, 4, nil], [2, nil, nil]])
+    end 
+
+    it "if argument is not a 2D array" do
+        expect {my_transpose([1, 2, 3])}.to raise_error(ArgumentError)
+    end
+end
