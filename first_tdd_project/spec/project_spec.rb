@@ -37,3 +37,36 @@ describe "my_uniq" do
         expect(my_uniq(arr_2)).to eq([1, 2, 3])
     end
 end
+
+
+describe "Array#two_sum" do 
+    let(:arr_3) {[-1, 0, 2, -3, 1]}
+    let(:arr_4) {[-1, -2, 2, -3, 1]}
+    let(:arr_1) {[1]}
+    let(:arr_5) {[0,1,2,3]}
+
+    it "should return an empty array if arr.length == 0" do 
+        expect([].two_sum).to eq([])
+    end
+
+    it "should returns pair positions of numbers that add to 0" do 
+        expect(arr_3.two_sum).to eq([[0,4]])
+    end 
+
+    it "finds multiple pairs" do 
+        expect(arr_4.two_sum).to eq([[0,4],[1,2]])
+    end 
+
+    it "won't find spurious 0 pairs" do 
+        expect(arr_5.two_sum).to eq([])
+    end 
+
+    it "should return empty array if no pairs are found" do 
+        expect(arr_5.two_sum).to eq([])
+    end 
+
+    it "finds pairs with same element" do 
+        expect([5,-5,-5].two_sum).to eq([[0,1],[0,2]])
+    end 
+
+end 
