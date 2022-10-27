@@ -35,6 +35,20 @@ def my_transpose(matrix)
     zip
 end
 
-def stock_picker
+def stock_picker(stock_prices)
+    raise ArgumentError.new unless stock_prices.all? {|ele| ele.is_a?(Integer)}
+    hash = Hash.new {|h,k| h[k]=[]}
+
+    stock_prices.each.with_index do |price_1, day_1|
+        stock_prices.each.with_index do |price_2, day_2|
+            diff = price_2 - price_1
+            if day_2 > day_1 && diff > 0
+                hash[diff].push(day_1,day_2)
+            end 
+        end 
+    end 
+
+    key_max = hash.keys.max 
+    hash[key_max]
 end
 

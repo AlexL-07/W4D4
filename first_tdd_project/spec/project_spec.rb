@@ -93,3 +93,28 @@ describe "my_transpose" do
         expect {my_transpose([1, 2, 3])}.to raise_error(ArgumentError)
     end
 end
+
+describe "stock_picker" do 
+    let(:stock_1) {[100,50,125,150,110]}
+    let(:stock_2) {['100','50','125',150,110]}
+    let(:stock_3) {[150,125,110,100,50]}
+    
+
+    it "should return an array of the most profitable days" do 
+        expect(stock_picker(stock_1)).to eq([1,3])
+    end 
+
+    it "should return an empty array if there is not profitable days" do 
+        expect(stock_picker(stock_3)).to eq([])
+    end 
+
+    it "you have to buy the stock first before selling the stock" do 
+        expect(stock_picker(stock_1)).not_to eq([3,1])
+    end 
+
+    it "should raise an argument error if the array does not only contain integers" do 
+        expect {stock_picker(stock_2)}.to raise_error(ArgumentError)
+    end 
+
+
+end 
